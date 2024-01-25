@@ -1,0 +1,17 @@
+version: '3.9'
+
+volumes:
+  superset:
+
+services:
+  superset:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: superset
+    volumes:
+      - superset:/app/superset_home
+      - ./app/superset_config.py:/app/superset_config.py
+      - ./app/custom_sso_security_manager.py:/app/custom_sso_security_manager.py
+    ports:
+      - 8088:8088
